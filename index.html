@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsUp by Mojar - Connect with friends and the world</title>
+    <meta name="description" content="WhatsUp by Mojar is a social media platform for connecting with friends, sharing posts, messaging, and building meaningful relationships online.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="WhatsUp by Mojar - Social Network">
+    <meta property="og:description" content="Connect with friends and the world around you on WhatsUp, the modern social media platform.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whatsup.mojar.com">
+</head>
+<body>
+    <!-- Login/Register Page -->
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="logo">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h1 id="loginTitle">Welcome to WhatsUp</h1>
+                    <p id="loginSubtitle">Connect with friends and the world around you.</p>
+                </div>
+                
+                <form id="authForm" class="auth-form">
+                    <div id="nameFields" class="name-fields" style="display: none;">
+                        <input type="text" id="firstName" placeholder="First name" required>
+                        <input type="text" id="lastName" placeholder="Last name" required>
+                    </div>
+                    
+                    <input type="text" id="username" placeholder="Username" required>
+                    
+                    <input type="email" id="email" placeholder="Email address" style="display: none;">
+                    
+                    <input type="password" id="password" placeholder="Password" required>
+                    
+                    <button type="submit" id="authButton" class="auth-button">Log In</button>
+                </form>
+                
+                <div class="forgot-password">
+                    <a href="#" id="forgotPassword">Forgotten password?</a>
+                </div>
+                
+                <hr class="divider">
+                
+                <button id="toggleAuth" class="create-account-btn">Create New Account</button>
+                
+                <div id="demoAccount" class="demo-account">
+                    <strong>Demo Account:</strong><br>
+                    Username: Daniel Mojar<br>
+                    Password: danielot
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Navigation -->
+        <header class="navbar">
+            <div class="nav-container">
+                <!-- Left Section -->
+                <div class="nav-left">
+                    <div class="logo-section">
+                        <div class="logo">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h1 class="brand-name">WhatsUp</h1>
+                        <span class="brand-subtitle">by Mojar</span>
+                    </div>
+                    
+                    <div class="search-box">
+                        <input type="text" placeholder="Search WhatsUp" id="searchInput">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Center Navigation -->
+                <nav class="nav-center">
+                    <button class="nav-item active" data-page="feed">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <button class="nav-item" data-page="friends">
+                        <i class="fas fa-user-friends"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="nav-item" data-page="messenger">
+                        <i class="fas fa-comment-dots"></i>
+                        <span class="badge">2</span>
+                    </button>
+                    <button class="nav-item" data-page="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">7</span>
+                    </button>
+                </nav>
+
+                <!-- Right Section -->
+                <div class="nav-right">
+                    <button class="nav-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="nav-btn">
+                        <i class="fab fa-facebook-messenger"></i>
+                    </button>
+                    <button class="profile-btn" data-page="profile">
+                        <img id="userAvatar" src="" alt="Profile" class="profile-avatar">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <button id="logoutBtn" class="nav-btn logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav">
+            <button class="mobile-nav-item active" data-page="feed">
+                <i class="fas fa-home"></i>
+            </button>
+            <button class="mobile-nav-item" data-page="friends">
+                <i class="fas fa-user-friends"></i>
+                <span class="badge">3</span>
+            </button>
+            <button class="mobile-nav-item" data-page="messenger">
+                <i class="fas fa-comment-dots"></i>
+                <span class="badge">2</span>
+            </button>
+            <button class="mobile-nav-item" data-page="notifications">
+                <i class="fas fa-bell"></i>
+                <span class="badge">7</span>
+            </button>
+            <button class="mobile-nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+            </button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Feed Page -->
+            <div id="feedPage" class="page active">
+                <div class="feed-container">
+                    <!-- Left Sidebar -->
+                    <div class="left-sidebar">
+                        <!-- User Profile Card -->
+                        <div class="profile-card">
+                            <div class="profile-info">
+                                <img id="sidebarAvatar" src="" alt="Profile" class="sidebar-avatar">
+                                <div class="profile-details">
+                                    <h3 id="sidebarName" class="profile-name">
+                                        <span class="verified-badge" style="display: none;">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                    </h3>
+                                    <p id="sidebarBio" class="profile-bio">WhatsUp User</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <h3>Quick Actions</h3>
+                            <button class="action-btn">
+                                <i class="fas fa-user-friends"></i>
+                                Find Friends
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-calendar-alt"></i>
+                                Events
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-users"></i>
+                                Groups
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Main Feed -->
+                    <div class="main-feed">
+                        <!-- Stories Section -->
+                        <div class="stories-section">
+                            <div class="stories-container">
+                                <div class="story create-story">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=200" alt="Create Story">
+                                    <div class="story-overlay"></div>
+                                    <div class="create-icon">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <span class="story-label">Create</span>
+                                </div>
+                                <div id="storiesContainer"></div>
+                            </div>
+                        </div>
+
+                        <!-- Create Post -->
+                        <div class="create-post">
+                            <div class="post-input-section">
+                                <img id="postAvatar" src="" alt="Profile" class="post-avatar">
+                                <textarea id="postContent" placeholder="What's on your mind?" rows="1"></textarea>
+                            </div>
+                            
+                            <div class="post-actions">
+                                <button class="post-action-btn">
+                                    <i class="fas fa-video" style="color: #e42c64;"></i>
+                                    <span>Live Video</span>
+                                </button>
+                                <button class="post-action-btn">
+                                    <i class="fas fa-images" style="color: #45bd62;"></i>
+                                    <span>Photo/Video</span>
+                                </button>
+                                <button class="post-action-btn">
+                                    <i class="fas fa-smile" style="color: #f7b928;"></i>
+                                    <span>Feeling</span>
+                                </button>
+                                <button id="createPostBtn" class="post-btn">Post</button>
+                            </div>
+                        </div>
+
+                        <!-- Posts Feed -->
+                        <div id="postsContainer"></div>
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <div class="right-sidebar">
+                        <!-- Online Friends -->
+                        <div class="online-friends">
+                            <h3>Online Friends</h3>
+                            <div id="onlineFriendsContainer"></div>
+                        </div>
+
+                        <!-- Suggested Friends -->
+                        <div class="suggested-friends">
+                            <h3>People You May Know</h3>
+                            <div id="suggestedFriendsContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messenger Page -->
+            <div id="messengerPage" class="page">
+                <div class="messenger-container">
+                    <!-- Chat List -->
+                    <div class="chat-list">
+                        <div class="chat-header">
+                            <h2>Chats</h2>
+                            <input type="text" placeholder="Search Messenger" class="search-messenger">
+                        </div>
+                        <div id="conversationsContainer" class="conversations"></div>
+                    </div>
+
+                    <!-- Chat Window -->
+                    <div class="chat-window">
+                        <div id="chatHeader" class="chat-window-header" style="display: none;">
+                            <div class="chat-user-info">
+                                <img id="chatAvatar" src="" alt="Profile" class="chat-avatar">
+                                <div class="chat-user-details">
+                                    <h3 id="chatUsername">Select a chat</h3>
+                                    <p id="chatStatus">Start a conversation</p>
+                                </div>
+                            </div>
+                            <div class="chat-actions">
+                                <button class="chat-action-btn"><i class="fas fa-phone"></i></button>
+                                <button class="chat-action-btn"><i class="fas fa-video"></i></button>
+                                <button class="chat-action-btn"><i class="fas fa-info-circle"></i></button>
+                            </div>
+                        </div>
+
+                        <div id="messagesContainer" class="messages-container">
+                            <div class="no-chat-selected">
+                                <i class="fas fa-comment-dots"></i>
+                                <h3>Choose a chat to start messaging</h3>
+                            </div>
+                        </div>
+
+                        <div id="messageInput" class="message-input" style="display: none;">
+                            <button class="message-action-btn"><i class="fas fa-plus"></i></button>
+                            <div class="input-container">
+                                <input type="text" id="messageText" placeholder="Type a message..." autocomplete="off">
+                                <button class="emoji-btn"><i class="far fa-smile"></i></button>
+                            </div>
+                            <button id="sendMessageBtn" class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Friends Page -->
+            <div id="friendsPage" class="page">
+                <div class="friends-container">
+                    <!-- Friends Navigation -->
+                    <div class="friends-nav">
+                        <div class="friends-nav-card">
+                            <h2>Friends</h2>
+                            <div class="friends-nav-items">
+                                <button class="friends-nav-item active">
+                                    <i class="fas fa-home"></i>
+                                    Home
+                                </button>
+                                <button class="friends-nav-item">
+                                    <i class="fas fa-user-plus"></i>
+                                    Friend Requests
+                                    <span id="requestsBadge" class="nav-badge">0</span>
+                                </button>
+                                <button class="friends-nav-item">
+                                    <i class="fas fa-user-friends"></i>
+                                    Suggestions
+                                </button>
+                                <button class="friends-nav-item">
+                                    <i class="fas fa-users"></i>
+                                    All Friends
+                                </button>
+                                <button class="friends-nav-item">
+                                    <i class="fas fa-birthday-cake"></i>
+                                    Birthdays
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Friends Content -->
+                    <div class="friends-content">
+                        <!-- Friend Requests -->
+                        <div id="friendRequestsSection" class="friends-section" style="display: none;">
+                            <h3>Friend Requests</h3>
+                            <div id="friendRequestsContainer" class="friends-grid"></div>
+                        </div>
+
+                        <!-- Current Friends -->
+                        <div id="currentFriendsSection" class="friends-section">
+                            <h3 id="friendsCount">Your Friends (0)</h3>
+                            <div id="currentFriendsContainer" class="friends-grid"></div>
+                        </div>
+
+                        <!-- Suggested Friends -->
+                        <div class="friends-section">
+                            <h3>People You May Know</h3>
+                            <div id="suggestedUsersContainer" class="friends-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Page -->
+            <div id="notificationsPage" class="page">
+                <div class="notifications-container">
+                    <div class="notifications-card">
+                        <h2>Notifications</h2>
+                        <div id="notificationsContainer" class="notifications-list">
+                            <div class="no-notifications">
+                                <i class="fas fa-bell"></i>
+                                <p>No notifications yet</p>
+                                <span>When you get notifications, they'll show up here</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profilePage" class="page">
+                <div class="profile-container">
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <!-- Cover Photo -->
+                        <div class="cover-photo">
+                            <img id="profileCoverPhoto" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" alt="Cover photo">
+                            <div class="cover-overlay"></div>
+                        </div>
+                        
+                        <!-- Profile Info -->
+                        <div class="profile-info-section">
+                            <div class="profile-picture-section">
+                                <img id="profilePicture" src="" alt="Profile" class="profile-picture">
+                                <div id="profileVerifiedBadge" class="verified-badge profile-verified" style="display: none;">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="profile-details-section">
+                                <div class="profile-text">
+                                    <h1 id="profileName" class="profile-main-name">
+                                        <span id="profileVerifiedIcon" class="verified-badge" style="display: none;">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                    </h1>
+                                    <p id="profileBioText" class="profile-bio-text">WhatsUp User</p>
+                                    <p id="profileStats" class="profile-stats">0 friends • 0 posts</p>
+                                </div>
+                                <div class="profile-actions">
+                                    <button class="profile-action-btn primary">
+                                        <i class="fas fa-plus"></i>
+                                        Add to Story
+                                    </button>
+                                    <button class="profile-action-btn secondary">
+                                        <i class="fas fa-edit"></i>
+                                        Edit Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Content -->
+                    <div class="profile-content">
+                        <!-- Left Column -->
+                        <div class="profile-left">
+                            <!-- About -->
+                            <div class="about-section">
+                                <h3>About</h3>
+                                <div id="aboutContent" class="about-content"></div>
+                            </div>
+
+                            <!-- Friends -->
+                            <div class="profile-friends-section">
+                                <div class="section-header">
+                                    <h3>Friends</h3>
+                                    <button class="see-all-btn">See all friends</button>
+                                </div>
+                                <p id="profileFriendsCount" class="friends-count">0 friends</p>
+                                <div id="profileFriendsGrid" class="profile-friends-grid"></div>
+                            </div>
+
+                            <!-- Photos -->
+                            <div class="profile-photos-section">
+                                <div class="section-header">
+                                    <h3>Photos</h3>
+                                    <button class="see-all-btn">See all photos</button>
+                                </div>
+                                <div id="profilePhotosGrid" class="profile-photos-grid">
+                                    <div class="no-photos">
+                                        <i class="fas fa-images"></i>
+                                        <p>No photos yet</p>
+                                        <span>Share your first photo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column - Posts -->
+                        <div class="profile-right">
+                            <!-- Create Post -->
+                            <div class="profile-create-post">
+                                <div class="post-input-section">
+                                    <img id="profilePostAvatar" src="" alt="Profile" class="post-avatar">
+                                    <textarea id="profilePostContent" placeholder="What's on your mind?" rows="1"></textarea>
+                                </div>
+                                
+                                <div class="post-actions">
+                                    <button class="post-action-btn">
+                                        <i class="fas fa-video" style="color: #e42c64;"></i>
+                                        <span>Live Video</span>
+                                    </button>
+                                    <button class="post-action-btn">
+                                        <i class="fas fa-images" style="color: #45bd62;"></i>
+                                        <span>Photo/Video</span>
+                                    </button>
+                                    <button class="post-action-btn">
+                                        <i class="fas fa-smile" style="color: #f7b928;"></i>
+                                        <span>Feeling</span>
+                                    </button>
+                                    <button id="profileCreatePostBtn" class="post-btn">Post</button>
+                                </div>
+                            </div>
+
+                            <!-- User's Posts -->
+                            <div id="profilePostsContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen" style="display: none;">
+        <div class="loading-content">
+            <div class="logo">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="loading-text">Loading WhatsUp...</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

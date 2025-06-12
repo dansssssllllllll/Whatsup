@@ -57,7 +57,7 @@ export class MemStorage implements IStorage {
   }
 
   private seedData() {
-    // Create the owner account
+    // Create the owner account (Daniel Mojar) - hidden from public display
     const danielMojar: User = {
       id: this.currentUserId++,
       username: "Daniel Mojar",

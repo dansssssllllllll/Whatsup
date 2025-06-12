@@ -5,6 +5,12 @@ import { storage } from "./storage";
 import OpenAI from "openai";
 import { insertUserSchema, insertPostSchema, insertMessageSchema, insertFriendshipSchema } from "@shared/schema";
 
+declare module 'express-session' {
+  interface SessionData {
+    userId: number;
+  }
+}
+
 const openai = new OpenAI({ 
   apiKey: process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY_ENV_VAR || "default_key" 
 });
@@ -33,7 +39,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   // Session configuration
-  app.use(require('express-session')({
+  const session = (await import('express-session')).default;
+  app.use(session({
     secret: 'whatsup-secret-key',
     resave: false,
     saveUninitialized: false,
