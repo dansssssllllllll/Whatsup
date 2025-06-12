@@ -92,7 +92,6 @@ class WhatsUpApp {
         const loginSubtitle = document.getElementById('loginSubtitle');
         const authButton = document.getElementById('authButton');
         const forgotPassword = document.getElementById('forgotPassword');
-        const demoAccount = document.getElementById('demoAccount');
 
         const isLogin = nameFields.style.display === 'none';
 
@@ -105,7 +104,6 @@ class WhatsUpApp {
             loginSubtitle.textContent = 'Create your account to start connecting.';
             authButton.textContent = 'Sign Up';
             forgotPassword.style.display = 'none';
-            demoAccount.style.display = 'none';
         } else {
             // Switch to login
             nameFields.style.display = 'none';
@@ -115,7 +113,6 @@ class WhatsUpApp {
             loginSubtitle.textContent = 'Connect with friends and the world around you.';
             authButton.textContent = 'Log In';
             forgotPassword.style.display = 'block';
-            demoAccount.style.display = 'block';
         }
     }
 
